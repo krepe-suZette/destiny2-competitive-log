@@ -5,7 +5,7 @@ import get_info
 
 
 with open("player_name", "r", encoding="utf-8") as f:
-    PLAYER_NAME = f.read()
+    PLAYER_NAME = f.read().strip()
 app = Flask(__name__)
 
 
