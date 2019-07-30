@@ -1,0 +1,13 @@
+.vscode
+.vscode/**
+
+.idea
+.idea/**
+
+venv
+venv/**
+
+__pycache__
+__pycache__/**
+
+testdata
