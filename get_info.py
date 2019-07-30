@@ -151,7 +151,7 @@ def initializing_all(displayName):
             _activity_time = period2datetime(_recent_activity.get("period")) + datetime.timedelta(hours=9)
             # 특정 날짜 이전 기록은 스킵
             if _activity_time < datetime.datetime(2019, 6, 5):
-                print(f"- 7시즌 이전 기록은 건너뜁니다. {_activity_time}")
+                # print(f"- 7시즌 이전 기록은 건너뜁니다. {_activity_time}")
                 continue
             _info_list.append(change_data(_recent_activity, ""))
     _info_list.sort(key=lambda x: x["time"])
