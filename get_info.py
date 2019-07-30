@@ -127,12 +127,13 @@ def update(displayName):
     for characterId in _characters_id_list:
         _recent_activity = get_activity_history(membershipType, membershipId, characterId, count=1, mode=69)
         _activity_time = period2datetime(_recent_activity.get("activities")[0].get("period")) + datetime.timedelta(hours=9)
-        if _activity_time < datetime.datetime(2019, 7, 1):
-            # print("19년 7월 1일 이전의 기록입니다.")
+        _last_activity_time = datetime.datetime(2019, 7, 1)
+        if _activity_time < _last_activity_time:
             continue
-        save(_recent_activity.get("activities")[0], _glory, "crucible_data.json")
-        # print(_activity_time)
-        # print(_recent_activity.get("activities")[0].get("activityDetails").get("instanceId"))
+        else:
+            _last_activity_time = _activity_time
+            recent_activity = _recent_activity
+    save(recent_activity.get("activities")[0], _glory, "crucible_data.json")
     return
 
 
