@@ -1,0 +1,103 @@
+@font-face { font-family: 'Goyang'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Goyang.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+.container {
+max-width: 1280px;
+margin: 0 auto;
+}
+
+.container::after {
+content: ' ';
+display: table;
+clear: both
+}
+
+.content {
+width: 44%;
+padding: 0 3%;
+float: left;
+align-self: center;
+}
+
+.cover {
+position: sticky;
+top:0;
+}
+
+img {
+margin: 4% 0 0 0;
+width: 100%;
+}
+
+a {
+color: black;
+text-decoration: none;
+}
+
+textarea {
+width: 100%;
+height: 320px;
+font-family: inherit;
+font-size: inherit;
+border: none;
+resize: none;
+}
+
+
+button {
+font-family: inherit;
+font-size: inherit;
+background-color: white;
+padding: unset;
+border: none;
+}
+
+
+table {
+margin: 4% 0;
+width:100%;
+border: 4px solid #f3c891;
+border-radius: 1em;
+text-align: center;
+border-spacing: 0;
+overflow: hidden;
+font-family: 'Goyang';
+font-size: 1.2em;
+}
+table th, table td {
+padding: 4px 16px;
+}
+table th:first-child {
+border: none;
+}
+table thead th {
+border-left: 4px solid white;
+border-collapse: collapse;
+background: #f3c891;
+color: white;
+}
+table tbody td:first-child {
+border-left: none;
+}
+table tbody td {
+border-left: 4px solid #f3c891;
+border-bottom: 4px solid #f3c891;
+}
+table tfoot {
+text-align: left;
+}
+
+@media (max-width: 960px) {
+html {
+  font-size: 12px;
+}
+  table th, table td {
+  padding: 2px 4px;
+}
+.content {
+  width: 92%;
+  padding: 0 4%
+}
+.cover {
+  position: static;
+}
+}

@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}시련의 장 일지{% endblock %}
+
+{% block content %}
+<form action="{{ url_for('review_post') }}" class="container" method="POST">
+  <div style="max-width: 540px;margin: auto;">
+    <table>
+      <thead><tr><th>{{date}} 시련의 장 느낀점</th></tr></thead>
+      <tbody><tr><td><textarea name="review" placeholder="느낀점을 입력해주세요."></textarea></td></tr></tbody>
+      <tfoot><tr><td align="right"><button type="submit">등록하기</button></td></tr></tfoot>
+    </table>
+  </div>
+  <input type="hidden" name="date" value="{{ date }}">
+</form>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block title %}시련의 장 일지{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="content cover" >
+    <img src="{{ url_for('static', filename='cover.png') }}">
+    <table><thead><tr><th><a href="{{ url_for('update') }}" target="_blank">업데이트</a></th><th><a href="{{url_for('initialize')}}" target="_blank">초기화</a></th></tr></thead></table>
+  </div>
+  <div class="content">
+    <table>
+      <thead>
+        <tr class="table-head"><th>풍요의 시즌 시련의 장 연습카드</th></tr>
+      </thead>
+    </table>
+    {% for date, info in data.items() %}
+    <table>
+      <thead><tr class="table-head"><th>날짜</th><th>연습모드</th><th>KDA</th><th>효율</th><th>영광 점수</th></tr></thead>
+      <tbody>
+        {% for log in info %}
+        <tr><td>{{ date[5:] }}</td><td><a href="https://destinytracker.com/d2/pgcr/{{ log['instanceId'] }}" target="_blank">{{ log["mode"] }}</a></td><td>{{ log["kda"] }}</td><td>{{ log["efficiency"] }}</td><td>{{ log["glory"] }}</td></tr>
+        {% endfor %}
+      </tbody>
+      <tfoot><tr><td colspan="5"><a href="{{ url_for('review_update', date=date) }}" target="_blank"><b>느낀점 : </b></a>{{ review.get(date, "") }}</td></tr>
+      </tfoot>
+    </table>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
