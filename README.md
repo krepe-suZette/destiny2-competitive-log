@@ -11,4 +11,4 @@ PVP를 데스티니 가디언즈로 처음 시작하여 고통받는 수호자�
 나머지는 다른 Flask 앱처럼 구동하시면 됩니다. (`routes.py`)
 
 ## Copyright
-이미지 출처 및 화면 구성 아이디어: DCinside 데스티니 마이너 갤러리 유동닉 [ㅇㅇ(59.17)](https://gall.dcinside.com/mgallery/board/view/?id=destiny&no=382985)
+이미지 출처 및 화면 구성 아이디어: DCinside 데스티니 마이너 갤러리 유동닉 [ㅇㅇ(59.17)](https://gall.dcinside.com/mgallery/board/view/?id=destiny&no=382985) / [Image](https://gall.dcinside.com/mgallery/board/view/?id=destiny&no=405306)
