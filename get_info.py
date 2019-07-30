@@ -55,7 +55,7 @@ def save(data, glory, path):
             ori[f"{activity_time.year}/{activity_time.month}/{activity_time.day}"][-1] = info
         else:
             ori[f"{activity_time.year}/{activity_time.month}/{activity_time.day}"].append(info)
-    print("{instanceId}, {time}, {mode}, {kda}, {efficiency}".format(**info))
+    # print("{instanceId}, {time}, {mode}, {kda}, {efficiency}".format(**info))
     with open(path, "w", encoding="utf-8") as f:
         json.dump(ori, f, indent=2, ensure_ascii=False)
     return
@@ -73,7 +73,7 @@ def save_many(data, path, reset=True):
             ori[f"{activity_time.year}/{activity_time.month}/{activity_time.day}"] = [info]
         else:
             ori[f"{activity_time.year}/{activity_time.month}/{activity_time.day}"].append(info)
-        print("{instanceId}, {time}, {mode}, {kda}, {efficiency}".format(**info))
+        # print("{instanceId}, {time}, {mode}, {kda}, {efficiency}".format(**info))
     with open(path, "w", encoding="utf-8") as f:
         json.dump(ori, f, indent=2, ensure_ascii=False)
     return
@@ -128,11 +128,11 @@ def update(displayName):
         _recent_activity = get_activity_history(membershipType, membershipId, characterId, count=1, mode=69)
         _activity_time = period2datetime(_recent_activity.get("activities")[0].get("period")) + datetime.timedelta(hours=9)
         if _activity_time < datetime.datetime(2019, 7, 1):
-            print("19년 7월 1일 이전의 기록입니다.")
+            # print("19년 7월 1일 이전의 기록입니다.")
             continue
         save(_recent_activity.get("activities")[0], _glory, "crucible_data.json")
-        print(_activity_time)
-        print(_recent_activity.get("activities")[0].get("activityDetails").get("instanceId"))
+        # print(_activity_time)
+        # print(_recent_activity.get("activities")[0].get("activityDetails").get("instanceId"))
     return
 
 
