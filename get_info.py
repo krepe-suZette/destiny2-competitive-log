@@ -96,7 +96,7 @@ def bungie_response_wrapper(original_func):
     def wrapper_func(*args, **kwargs):
         resp = original_func(*args, **kwargs).json()
         if not resp.get("Response"):
-            raise Exception(f"No response on function {original_func.__name__}")
+            raise Exception(f"ErrorCode: {resp.get('ErrorCode')}, ErrorStatus: {resp.get('ErrorStatus')}, Message: {resp.get('Message')}")
         return resp.get("Response")
     return wrapper_func
 
@@ -144,9 +144,9 @@ def initializing_all(displayName):
     _characters_data = get_profile(membershipType, membershipId, ['200', '202'])
     _characters_id_list = list(_characters_data["characters"]["data"].keys())
     _info_list = []
-    # 캐릭터별로 최근 30개의 정보 받아오기
+    # 캐릭터별로 최근 100개의 정보 받아오기
     for characterId in _characters_id_list:
-        # 경쟁 플레이리스트 기록 (최대 30개) -> list
+        # 경쟁 플레이리스트 기록 (최대 100개) -> list
         _recent_activities = get_activity_history(membershipType, membershipId, characterId, count=100, mode=69).get("activities")
         for _recent_activity in _recent_activities:
             _activity_time = period2datetime(_recent_activity.get("period")) + datetime.timedelta(hours=9)
