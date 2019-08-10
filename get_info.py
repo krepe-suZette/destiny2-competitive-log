@@ -125,7 +125,10 @@ def update(displayName):
     _characters_id_list = list(_characters_data["characters"]["data"].keys())
     _glory = _characters_data["characterProgressions"]["data"][_characters_id_list[0]]["progressions"]["2679551909"]["currentProgress"]
     for characterId in _characters_id_list:
-        _recent_activity = get_activity_history(membershipType, membershipId, characterId, count=1, mode=69)
+        try:
+            _recent_activity = get_activity_history(membershipType, membershipId, characterId, count=1, mode=69)
+        except:
+            continue
         _activity_time = period2datetime(_recent_activity.get("activities")[0].get("period")) + datetime.timedelta(hours=9)
         _last_activity_time = datetime.datetime(2019, 7, 1)
         if _activity_time < _last_activity_time:
@@ -147,7 +150,10 @@ def initializing_all(displayName):
     # 캐릭터별로 최근 100개의 정보 받아오기
     for characterId in _characters_id_list:
         # 경쟁 플레이리스트 기록 (최대 100개) -> list
-        _recent_activities = get_activity_history(membershipType, membershipId, characterId, count=100, mode=69).get("activities")
+        try:
+            _recent_activities = get_activity_history(membershipType, membershipId, characterId, count=100, mode=69).get("activities")
+        except:
+            continue
         for _recent_activity in _recent_activities:
             _activity_time = period2datetime(_recent_activity.get("period")) + datetime.timedelta(hours=9)
             # 특정 날짜 이전 기록은 스킵
