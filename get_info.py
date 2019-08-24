@@ -8,7 +8,21 @@ HEADERS = {"X-API-KEY": "076a4b7f8a8746d88f480a0c994b8b54"}
 
 raceType = {0: "인간", 1: "각성자", 2: "엑소"}
 classType = {0: "타이탄", 1: "헌터", 2: "워록"}
+genderType = {0: "남성", 1: "여성"}
 activityModeType = {37: "생존", 38: "카운트다운", 72: "격돌", 74: "점령"}
+
+
+def load_user_id(player_name) -> list:
+    with open(".player_info", "r") as f:
+        info = f.read()
+    if info:
+        data = json.loads(info)
+    else:
+        _player_info = search_destiny_player(player_name)[0]
+        data = [_player_info["membershipId"], _player_info["membershipType"]]
+        with open(".player_info", "w") as f:
+            json.dump(data, f)
+    return data
 
 
 def period2datetime(period):
@@ -118,9 +132,7 @@ def get_activity_history(membershipType, membershipId, characterId, count=3, mod
 
 
 def update(displayName):
-    _player_info = search_destiny_player(displayName)[0]
-    membershipId = _player_info["membershipId"]
-    membershipType = _player_info["membershipType"]
+    membershipId, membershipType = load_user_id(displayName)
     _characters_data = get_profile(membershipType, membershipId, ['200', '202'])
     _characters_id_list = list(_characters_data["characters"]["data"].keys())
     _glory = _characters_data["characterProgressions"]["data"][_characters_id_list[0]]["progressions"]["2679551909"]["currentProgress"]
@@ -141,9 +153,7 @@ def update(displayName):
 
 
 def initializing_all(displayName):
-    _player_info = search_destiny_player(displayName)[0]
-    membershipId = _player_info["membershipId"]
-    membershipType = _player_info["membershipType"]
+    membershipId, membershipType = load_user_id(displayName)
     _characters_data = get_profile(membershipType, membershipId, ['200', '202'])
     _characters_id_list = list(_characters_data["characters"]["data"].keys())
     _info_list = []
